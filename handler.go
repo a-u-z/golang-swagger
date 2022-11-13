@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
@@ -20,13 +21,17 @@ type helloReq struct {
 // @Produce  json
 // @Param authorization  header string true "type bearer"
 // @Param letter query string true "letter"
-// @Success 200 {string} string
+// @Success 200 {object} HttpResp
+// @Failure 400 {object} HttpResp
 // @Router /swagger-example/hello [get]
 func hello(c *gin.Context) {
 	var req helloReq
 	// get => req 的 struct 的補充說明要用 form, Param 要用 query, c.shouldBindQuery
 	if err := c.ShouldBindQuery(&req); err != nil {
-		// 錯誤處理
+		c.JSON(http.StatusBadRequest, HttpResp{
+			Code:    http.StatusBadRequest,
+			Message: "param type is wrong",
+		})
 		return
 	}
 
@@ -41,8 +46,10 @@ func hello(c *gin.Context) {
 	default:
 	}
 
-	c.JSON(200, resp)
-
+	c.JSON(http.StatusOK, HttpResp{
+		Code:    http.StatusOK,
+		Message: resp,
+	})
 }
 
 type echoReq struct {
@@ -59,17 +66,22 @@ type echoReq struct {
 // @Produce  json
 // @Param authorization  header string true "type bearer"
 // @Param word body echoReq true "word"
-// @Success 200 {string} string
-// @Success 200 {string} string
+// @Success 200 {object} HttpResp
+// @Failure 400 {object} HttpResp
 // @Router /swagger-example/echo [post]
 func echo(c *gin.Context) {
 
 	// post => req 的 struct 的補充說明要用 json, Param 要用 body, c.ShouldBindJSON
 	var er echoReq
 	if err := c.ShouldBindJSON(&er); err != nil {
-		// 錯誤處理
+		c.JSON(http.StatusBadRequest, HttpResp{
+			Code:    http.StatusBadRequest,
+			Message: "param type is wrong",
+		})
 		return
 	}
-
-	c.JSON(200, fmt.Sprintf("I will say %v too", er.Word))
+	c.JSON(http.StatusOK, HttpResp{
+		Code:    http.StatusOK,
+		Message: fmt.Sprintf("I will say %v too", er.Word),
+	})
 }

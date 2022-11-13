@@ -1,4 +1,14 @@
 definitions:
+  main.HttpResp:
+    properties:
+      code:
+        example: 200
+        type: integer
+      data: {}
+      message:
+        example: success
+        type: string
+    type: object
   main.echoReq:
     properties:
       word:
@@ -39,7 +49,11 @@ paths:
         "200":
           description: OK
           schema:
-            type: string
+            $ref: '#/definitions/main.HttpResp'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/main.HttpResp'
       summary: <在不展開 api 的時候就可以看到的描述>
       tags:
       - <這邊可以幫 api 新增標籤，做出分類的效果>
@@ -68,7 +82,11 @@ paths:
         "200":
           description: OK
           schema:
-            type: string
+            $ref: '#/definitions/main.HttpResp'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/main.HttpResp'
       summary: <在不展開 api 的時候就可以看到的描述>
       tags:
       - <這邊可以幫 api 新增標籤，做出分類的效果>
