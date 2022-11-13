@@ -1,0 +1,107 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "\u003c就是描述\u003e",
+        "title": "\u003cswagger 的 title\u003e",
+        "contact": {},
+        "version": "2.0"
+    },
+    "host": "localhost:8080",
+    "paths": {
+        "/swagger-example/echo": {
+            "post": {
+                "description": "\u003c在展開的時候才會出現，此 api 詳細的描述\u003e\n\u003c在展開的時候才會出現，此 api 詳細的描述\u003e",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "\u003c這邊可以幫 api 新增標籤，做出分類的效果\u003e"
+                ],
+                "summary": "\u003c在不展開 api 的時候就可以看到的描述\u003e",
+                "operationId": "echo",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "type bearer",
+                        "name": "authorization",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": "word",
+                        "name": "word",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/main.echoReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/swagger-example/hello": {
+            "get": {
+                "description": "\u003c在展開的時候才會出現，此 api 詳細的描述\u003e\n\u003c在展開的時候才會出現，此 api 詳細的描述\u003e",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "\u003c這邊可以幫 api 新增標籤，做出分類的效果\u003e"
+                ],
+                "summary": "\u003c在不展開 api 的時候就可以看到的描述\u003e",
+                "operationId": "hello",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "type bearer",
+                        "name": "authorization",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "letter",
+                        "name": "letter",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "main.echoReq": {
+            "type": "object",
+            "required": [
+                "word"
+            ],
+            "properties": {
+                "word": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

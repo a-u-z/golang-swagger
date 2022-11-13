@@ -1,0 +1,75 @@
+definitions:
+  main.echoReq:
+    properties:
+      word:
+        type: string
+    required:
+    - word
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: <就是描述>
+  title: <swagger 的 title>
+  version: "2.0"
+paths:
+  /swagger-example/echo:
+    post:
+      consumes:
+      - application/json
+      description: |-
+        <在展開的時候才會出現，此 api 詳細的描述>
+        <在展開的時候才會出現，此 api 詳細的描述>
+      operationId: echo
+      parameters:
+      - description: type bearer
+        in: header
+        name: authorization
+        required: true
+        type: string
+      - description: word
+        in: body
+        name: word
+        required: true
+        schema:
+          $ref: '#/definitions/main.echoReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: <在不展開 api 的時候就可以看到的描述>
+      tags:
+      - <這邊可以幫 api 新增標籤，做出分類的效果>
+  /swagger-example/hello:
+    get:
+      consumes:
+      - application/json
+      description: |-
+        <在展開的時候才會出現，此 api 詳細的描述>
+        <在展開的時候才會出現，此 api 詳細的描述>
+      operationId: hello
+      parameters:
+      - description: type bearer
+        in: header
+        name: authorization
+        required: true
+        type: string
+      - description: letter
+        in: query
+        name: letter
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: <在不展開 api 的時候就可以看到的描述>
+      tags:
+      - <這邊可以幫 api 新增標籤，做出分類的效果>
+swagger: "2.0"
