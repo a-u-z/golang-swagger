@@ -1,3 +1,6 @@
+* 這是一個 swagger 的範例
+* 裡面有 get, post 兩種方法
+
 * 更改 swagger 後，要 swag init
 * 如果安裝 swgger 卻無法 swag init
 * follow the step below
